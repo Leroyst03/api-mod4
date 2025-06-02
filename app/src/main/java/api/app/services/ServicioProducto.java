@@ -23,6 +23,18 @@ public class ServicioProducto {
     } 
 
     public Producto setProducto(Producto producto) {
+        if(producto.getNombre() == null || producto.getNombre().isEmpty()) {
+            throw new HttpException(HttpStatus.BAD_REQUEST, "El nombre del producto no puede estar vacío");
+        }
+    
+        if(producto.getCantidad() == null || producto.getCantidad() <= 0) {
+            throw new HttpException(HttpStatus.BAD_REQUEST, "La cantidad debe ser mayor a 0");
+        }   
+
+        if(producto.getPrecio() <= 0) {
+            throw new HttpException(HttpStatus.BAD_REQUEST, "El precio debe ser mayor a 0");
+        }
+        
         return repo.save(producto);
     }
 
@@ -46,11 +58,25 @@ public class ServicioProducto {
 
         Producto producto = productoOpt.get();
 
-        if(nuevoProducto.getNombre() != null && nuevoProducto.getNombre().equals("")) producto.setNombre(nuevoProducto.getNombre());
-        if(nuevoProducto.getCantidad() != null && nuevoProducto.getCantidad() > 0) producto.setCantidad(nuevoProducto.getCantidad());
-        if(nuevoProducto.getPrecio() != producto.getPrecio() && nuevoProducto.getPrecio() > 0) producto.setPrecio(nuevoProducto.getPrecio());
+        if(nuevoProducto.getNombre() == null && nuevoProducto.getNombre().length() <= 0) {
+            throw new HttpException(HttpStatus.BAD_REQUEST, "Los datos proporcionados son invalidos");
+        } else{
+            producto.setNombre(nuevoProducto.getNombre());
+        }
         
-        return repo.save(producto);
+        if(nuevoProducto.getCantidad() == null && nuevoProducto.getCantidad() <= 0) {
+            throw new HttpException(HttpStatus.BAD_REQUEST, "Los datos proporcionados son invalidos");
+        }  else{
+            producto.setCantidad(nuevoProducto.getCantidad());
+        }
+
+        if(nuevoProducto.getPrecio() != producto.getPrecio() && nuevoProducto.getPrecio() > 0) {
+            producto.setPrecio(nuevoProducto.getPrecio());
+            return repo.save(producto);
+        }
+        else{
+            throw new HttpException(HttpStatus.BAD_REQUEST, "Los datos proporcionados son invalidos");
+        }
     }
 
 }
