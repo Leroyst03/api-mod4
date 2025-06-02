@@ -10,7 +10,7 @@ public class App {
 
         inventario.guardarProductos(lis);
 
-        inventario.mostrarPorductos();
+        inventario.mostrarProductos();
 
     }
 

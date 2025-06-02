@@ -8,13 +8,13 @@ public class ProductoElectrico extends Producto{
         this.marca = marca;
     }
 
-    @Override
-   public String mostrarInfo() {
-        return  "Nombre: " + nombre + "\n" 
-        + "Precio: " + precio + "\n" +
-        "Cantidad: " + cantidad + "\n" +
-        "Modelo: " + modelo + "\n" + 
-        "Marca: " + marca + "\n";
+   @Override
+    public String mostrarInfo() {
+    return "Nombre: " + getNombre() + "\n" 
+        + "Precio: " + getPrecio() + "\n"
+        + "Cantidad: " + getCantidad() + "\n"
+        + "Modelo: " + modelo + "\n" 
+        + "Marca: " + marca + "\n";
     }
 
 

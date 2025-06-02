@@ -1,7 +1,7 @@
 public class Producto {
-    protected  String nombre;
-    protected  double precio;
-    protected  int cantidad;
+    private  String nombre;
+    private  double precio;
+    private  int cantidad;
 
     public Producto (String nombre, double precio, int cantidad) {
         this.nombre = nombre;
@@ -16,13 +16,13 @@ public class Producto {
     }
 
     public String getNombre() {
-        return "Nombre: " + nombre;
+        return nombre;
     }
-    public String getPrecio() {
-        return "Precio: " + precio;
+    public Double getPrecio() {
+        return precio;
     }
-    public String getCantidad() {
-        return "Nombre: " + cantidad;
+    public Integer getCantidad() {
+        return cantidad;
     }
 
     public void setNombre(String nombre) {
